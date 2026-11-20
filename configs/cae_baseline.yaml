@@ -1,0 +1,29 @@
+# Convolutional Autoencoder (CAE) Baseline Configuration
+model_name: "cae"
+model_family: "classic_cnn_reconstruction"
+device: "cuda"
+
+data:
+  image_size: 256
+  sectors: ["pcb", "metal_nut", "weld_casting", "ceramic_tile"]
+  data_dir: "./test_data_industrial"
+  batch_size: 16
+  num_workers: 2
+
+architecture:
+  encoder_channels: [32, 64, 128, 256]
+  bottleneck_dim: 256
+  activation: "leaky_relu"
+  batch_norm: true
+
+training:
+  epochs: 50
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  loss_type: "combined_ssim_l1"
+  ssim_weight: 0.5
+  l1_weight: 0.5
+  seeds: [42, 1337, 2026]
+
+metrics:
+  threshold: 0.50

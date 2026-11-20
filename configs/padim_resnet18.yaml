@@ -1,0 +1,24 @@
+# PaDiM (ResNet-18) Modern Pretrained Configuration
+model_name: "padim"
+model_family: "parametric_patch_distribution"
+device: "cuda"
+
+data:
+  image_size: 256
+  sectors: ["pcb", "metal_nut", "weld_casting", "ceramic_tile"]
+  data_dir: "./test_data_industrial"
+  batch_size: 16
+  num_workers: 2
+
+architecture:
+  backbone: "resnet18"
+  pretrained: true
+  extracted_layers: ["layer1", "layer2", "layer3"]
+  random_feature_dims: 100
+  covariance_epsilon: 0.01
+
+inference:
+  metric: "mahalanobis"
+  gaussian_smooth_sigma: 4.0
+  threshold: 0.50
+  seeds: [42, 1337, 2026]

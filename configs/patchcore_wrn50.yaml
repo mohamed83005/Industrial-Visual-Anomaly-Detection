@@ -1,0 +1,30 @@
+# PatchCore (WideResNet-50-2) SOTA Configuration
+model_name: "patchcore"
+model_family: "advanced_memory_bank"
+device: "cuda"
+
+data:
+  image_size: 256
+  sectors: ["pcb", "metal_nut", "weld_casting", "ceramic_tile"]
+  data_dir: "./test_data_industrial"
+  batch_size: 16
+  num_workers: 2
+
+architecture:
+  backbone: "wide_resnet50_2"
+  pretrained: true
+  extracted_layers: ["layer2", "layer3"]
+  neighborhood_pool_kernel: 3
+  neighborhood_pool_stride: 1
+
+coreset_sampling:
+  algorithm: "greedy_k_center"
+  subsample_ratio: 0.10 # 90% memory bank compression
+  distance_metric: "euclidean"
+  vectorized_cache: true
+
+inference:
+  k_nearest_neighbors: 9
+  gaussian_smooth_sigma: 4.0
+  threshold: 0.50
+  seeds: [42, 1337, 2026]

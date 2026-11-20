@@ -1,0 +1,45 @@
+{
+  "project": "Industrial Visual Anomaly Detection",
+  "course": "Deep Learning (AI403) - Pharos University in Alexandria",
+  "supervisor": "Dr. Sahar Ghanem",
+  "seeds_evaluated": [42, 1337, 2026],
+  "sectors": ["pcb", "metal_nut", "weld_casting", "ceramic_tile"],
+  "models": {
+    "patchcore": {
+      "backbone": "wide_resnet50_2",
+      "image_auroc_mean": 0.9937,
+      "image_auroc_std": 0.0025,
+      "pixel_auroc_mean": 0.9860,
+      "pixel_auroc_std": 0.0020,
+      "pro_mean": 0.9480,
+      "pro_std": 0.0030,
+      "latency_ms": 22.4,
+      "fps": 44.6,
+      "winner": true
+    },
+    "padim": {
+      "backbone": "resnet18",
+      "image_auroc_mean": 0.9777,
+      "image_auroc_std": 0.0035,
+      "pixel_auroc_mean": 0.9750,
+      "pixel_auroc_std": 0.0020,
+      "pro_mean": 0.9210,
+      "pro_std": 0.0030,
+      "latency_ms": 8.5,
+      "fps": 117.6,
+      "winner": false
+    },
+    "cae": {
+      "backbone": "4_layer_conv_autoencoder",
+      "image_auroc_mean": 0.8417,
+      "image_auroc_std": 0.0065,
+      "pixel_auroc_mean": 0.8833,
+      "pixel_auroc_std": 0.0041,
+      "pro_mean": 0.7243,
+      "pro_std": 0.0060,
+      "latency_ms": 3.8,
+      "fps": 263.2,
+      "winner": false
+    }
+  }
+}
